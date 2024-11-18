@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.port || 3001;
 
 var corsOptions = {
-  origin: "*",
+  origin: "https://invitacion-graduacion-sofy.vercel.app/",
 };
 app.use(cors(corsOptions));
 app.use(express.json());
