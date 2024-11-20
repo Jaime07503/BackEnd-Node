@@ -3,11 +3,10 @@ const { createClient } = require("@libsql/client");
 const cors = require("cors");
 
 const app = express();
-const port = process.env.port || 3001;
 
-var corsOptions = {
-  origin: "*"
-}
+const corsOptions = {
+  origin: "*",
+};
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -18,6 +17,7 @@ const client = createClient({
     "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MzE4NjQ0NzcsImlkIjoiOTI5NGE1NjktOTFmNi00ZDJhLWFmODgtMjFlYjg1MzUxYjg4In0.Tr9Oc1mk7T2Ij_Z421FD6_QXcrd8bHsMVP-WD4AnwqwaNZYFUnlh39jhlFJgJTPW8Cqmne2AaLRhfs_twOvqCA",
 });
 
+// Rutas
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.get("/families/:family", async (req, res) => {
@@ -71,6 +71,6 @@ app.put("/families/updatedMembers", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Servidor escuchando en http://localhost:${port}`);
-});
+// Exportar como handler para Vercel
+module.exports = app;
+
